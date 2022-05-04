@@ -1,6 +1,6 @@
 import React from 'react';
 
-const baseUrl = 'http://openlibrary.org';
+const baseUrl = 'https://openlibrary.org';
 
 export function searchBooks(query) {
     const url = new URL(baseUrl + '/search.json');
@@ -29,7 +29,7 @@ const resultList = (results || []).map((book) =>
   return (
     <div>
       <div className="search-input">
-<input onChange={handleSearch} type="text" placeholder="Search"/>
+<input onChange={handleSearch} type="text" placeholder="Type Something"/>
       </div>
       <h1 className="h1">Search Results</h1>
       <div className="books">
