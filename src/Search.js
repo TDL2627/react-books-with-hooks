@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const baseUrl = 'https://openlibrary.org';
 
@@ -12,12 +12,19 @@ export function searchBooks(query) {
 export function Search() {
 
     const [results, setResults] = React.useState(0);
+    const [value, setValue] = React.useState()
 
 const handleSearch = (event) => {
   searchBooks(event.target.value).then(response => {
     setResults(response.docs);
   });
 };
+
+useEffect(() => {
+    searchBooks(value).then(response => {
+        setResults(response.docs);
+      });
+}, [])
 
 const resultList = (results || []).map((book) =>
   <tr key={book.key}>
@@ -29,7 +36,7 @@ const resultList = (results || []).map((book) =>
   return (
     <div>
       <div className="search-input">
-<input onChange={handleSearch} type="text" placeholder="Type Something"/>
+<input  type="text"  placeholder="Type Something"/>
       </div>
       <h1 className="h1">Search Results</h1>
       <div className="books">
